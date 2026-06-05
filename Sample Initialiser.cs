@@ -11,9 +11,9 @@ public static class SampleInitialiser
     private static readonly string[] lastNames = new[] { "Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson" };
     private static readonly string[] courseNames = new[] { "Computer Science", "Mathematics", "Physics", "Chemistry", "Biology", "History", "English", "Economics" };
 
-    public static SampleData Seed(StudentRegister registry, int courseCount = 6, int studentsPerCourse = 20)
+    public static SampleData Seed(int courseCount = 6, int studentsPerCourse = 20)
     {
-        if (registry == null) throw new ArgumentNullException(nameof(registry));
+        StudentRegister register = new StudentRegister();
         // generate some courses and keep track of created instances
         var courseInstances = new List<Course>();
         var modulesByCourse = new Dictionary<string, List<string>>();
@@ -57,11 +57,11 @@ public static class SampleInitialiser
                         student.AddGrade(mod, grade);
                     }
                 }
-                registry.AddStudent(student);
+                register.AddStudent(student);
             }
         }
 
-        return new SampleData(registry, courseInstances, modulesByCourse);
+        return new SampleData(register, courseInstances, modulesByCourse);
     }
 
     private static string GenerateCourseCode(int idx)
