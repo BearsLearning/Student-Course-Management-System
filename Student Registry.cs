@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Courses;
 
 namespace StudentRegistry
 {
@@ -19,6 +20,14 @@ namespace StudentRegistry
             this.firstName = firstName;
             this.lastName = lastName;
             this.courseCode = courseCode;
+        }
+
+        public Student(int studentID, string firstName, string lastName, Course course)
+        {
+            this.studentID = studentID;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.courseCode = course.CourseCode;
         }
 
         public int StudentID => studentID;

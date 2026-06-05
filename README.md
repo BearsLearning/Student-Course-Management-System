@@ -1,5 +1,5 @@
 v0.2.0 Features
-Sample initialisation testing
+Sample initialisation testing ~
 Display students by course
 Exception handling across all current objects
 Course Code to Name mapping
