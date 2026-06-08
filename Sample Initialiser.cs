@@ -26,8 +26,8 @@ public static class SampleInitialiser
             int moduleCount = rng.Next(3, 7);
             var modules = new List<string>();
             for (int m = 0; m < moduleCount; m++) modules.Add($"{code}-MOD{m + 1}");
-            Course.RegisterCourse(code, name, credits, modules);
-            courseInstances.Add(new Course(code, credits));
+            CourseCatalog.RegisterCourse(code, name, credits, modules);
+            courseInstances.Add(new Course(code));
             modulesByCourse[code] = modules;
         }
 
@@ -46,7 +46,7 @@ public static class SampleInitialiser
                 string last = lastNames[rng.Next(lastNames.Length)];
                 var student = new Student(id, first, last, courseCode);
                 // add some grades across modules
-                var modules = Course.GetModules(courseCode);
+                var modules = Course.GetModulesStatic(courseCode);
                 foreach (var mod in modules)
                 {
                     // each module gets 1-3 grades
