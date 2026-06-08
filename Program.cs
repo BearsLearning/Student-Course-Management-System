@@ -15,7 +15,7 @@ namespace ConsoleCalculatorCSharp
                 course.DisplayModules();
             }
             sample.Registry.PerformanceTable();
-            //new Gradebook().Run();
+            new Gradebook(sample.Registry).Run();
         }
     }
 }

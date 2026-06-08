@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Assessments;
 using StudentRegistry;
+using Courses;
 
 namespace GradeBook
 {
@@ -14,6 +15,11 @@ namespace GradeBook
 
         public Gradebook()
         {
+        }
+
+        public Gradebook(StudentRegister registry)
+        {
+            this.registry = registry;
         }
 
         public void Run()
@@ -32,12 +38,14 @@ namespace GradeBook
                 Console.WriteLine("7) View student grades");
                 Console.WriteLine("8) View student averages");
                 Console.WriteLine("9) Display all course codes");
-                Console.WriteLine("10) Add student to assessment queue");
-                Console.WriteLine("11) Show students awaiting assessment");
-                Console.WriteLine("12) Conduct assessments");
-                Console.WriteLine("13) Display assessment results");
-                Console.WriteLine("14) View performance table");
-                Console.WriteLine("15) View action log");
+                Console.WriteLine("10) Display course modules");
+                Console.WriteLine("11) Display students enrolled on a course");
+                Console.WriteLine("12) Add student to assessment queue");
+                Console.WriteLine("13) Show students awaiting assessment");
+                Console.WriteLine("14) Conduct assessments");
+                Console.WriteLine("15) Display assessment results");
+                Console.WriteLine("16) View performance table");
+                Console.WriteLine("17) View action log");
                 Console.WriteLine("q) Quit gradebook");
 
                 string choice = Console.ReadLine()?.Trim().ToLowerInvariant();
@@ -54,12 +62,14 @@ namespace GradeBook
                     case "7": ViewStudentGrades(); break;
                     case "8": ViewStudentAverages(); break;
                     case "9": DisplayCourseCodes(); break;
-                    case "10": QueueStudentForAssessment(); break;
-                    case "11": assessor.StudentsAwaitingAssessment(); break;
-                    case "12": ConductAssessments(); break;
-                    case "13": assessor.DisplayResults(); break;
-                    case "14": registry.PerformanceTable(); break;
-                    case "15": DisplayActionLog(); break;
+                    case "10": DisplayCourseModules(); break;
+                    case "11": DisplayStudentsOnCourse(); break;
+                    case "12": QueueStudentForAssessment(); break;
+                    case "13": assessor.StudentsAwaitingAssessment(); break;
+                    case "14": assessor.ConductAssessment(); break;
+                    case "15": assessor.DisplayResults(); break;
+                    case "16": registry.PerformanceTable(); break;
+                    case "17": DisplayActionLog(); break;
                     default:
                         Console.WriteLine("Invalid selection.");
                         break;
@@ -228,6 +238,15 @@ namespace GradeBook
             LogAction("Displayed course codes");
         }
 
+        private void DisplayCourseModules()
+        {
+            Console.WriteLine("Enter course code to view modules: ");
+            string courseCode = ReadString();
+            if (courseCode == null) return;
+            var course = new Course(courseCode);
+            course.DisplayModules();
+        }
+
         private void QueueStudentForAssessment()
         {
             Console.Write("Enter student ID to queue for assessment: ");
@@ -261,6 +280,16 @@ namespace GradeBook
             {
                 Console.WriteLine(entry);
             }
+        }
+
+        private void DisplayStudentsOnCourse()
+        {
+            Console.WriteLine("Enter course code: ");
+            string courseCode = ReadString();
+            if (courseCode == null) return;
+            var course = new Course(courseCode);
+            course.DisplayEnrolledStudents(registry);
+            return;
         }
 
         // Helper input readers

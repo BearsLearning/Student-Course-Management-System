@@ -75,5 +75,20 @@ namespace Courses
         {
             Console.WriteLine($"Course Code: {courseCode}, Course Name: {CourseName}, Credits: {Credits}");
         }
+
+        public void DisplayEnrolledStudents(StudentRegistry.StudentRegister registry)
+        {
+            foreach(var student in registry.SortStudents())
+            {
+                if(string.Equals(student.CourseCode, courseCode, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine($" - {student.FirstName} {student.LastName} (ID: {student.StudentID})");
+                } else
+                {
+                    continue;
+                }
+            }
+            return;
+        }
     }
 }
