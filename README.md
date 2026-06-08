@@ -7,3 +7,7 @@ Teachers -
 System Report showing
     Total students, #students per course, avg grade per subject, students waiting for assessment, most recent system action
 Reassessment handling
+
+v0.3.0
+Introduction of Testing
+Minor tweaks to make: auto generate student IDs when adding, display course name with codes.
