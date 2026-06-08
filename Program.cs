@@ -7,15 +7,7 @@ namespace ConsoleCalculatorCSharp
     {
         static void Main(string[] args)
         {
-            SampleData sample = SampleInitialiser.Seed();
-            sample.Registry.DisplayAllUniqueCourseCodes();
-            foreach(var course in sample.Courses)
-            {
-                course.DisplayCourseInfo();
-                course.DisplayModules();
-            }
-            sample.Registry.PerformanceTable();
-            new Gradebook(sample.Registry).Run();
+            new Gradebook(SampleInitialiser.Seed().Registry).Run();
         }
     }
 }

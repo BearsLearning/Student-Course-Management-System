@@ -326,7 +326,7 @@ namespace GradeBook
             Console.WriteLine("Press Enter to return to the menu or type 'q' then Enter to quit.");
             string input = Console.ReadLine()?.Trim();
             if (string.Equals(input, "q", StringComparison.OrdinalIgnoreCase))
-            {
+            { 
                 Environment.Exit(0);
             }
             Console.Clear();
