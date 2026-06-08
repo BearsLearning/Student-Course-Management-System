@@ -41,11 +41,14 @@ namespace StudentRegistry
             {
                 throw new ArgumentOutOfRangeException(nameof(grade), "Grade must be between 0 and 100.");
             }
-            if (!grades.ContainsKey(subject))
+            if (grades.ContainsKey(subject))
             {
-                grades[subject] = new double[0];
+                grades[subject] = grades[subject].Append(grade).ToArray();
             }
-            grades[subject] = grades[subject].Append(grade).ToArray();
+            else
+            {
+                grades[subject] = new double[] { grade };
+            }
         }
 
         // Need to add Removal and amendment of grades.
