@@ -120,7 +120,7 @@ namespace StudentRegistry
         public void RemoveStudent(Student student)
         {
             students.Remove(student);
-            courseCodes.Remove(student.CourseCode);
+            // Removing a sstudent does not remove the course they were enrolled on.
         }
 
         public void RemoveStudentByID(int studentID)

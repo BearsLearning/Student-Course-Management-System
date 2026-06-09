@@ -31,15 +31,4 @@ namespace Teachers
 			students.Remove(student);
         }
     }
-
-	public class StaffRoom
-	{
-        private HashSet<Teacher> staff = new HashSet<Teacher>();
-        public StaffRoom() { }
-
-		public void AddTeacher(Teacher t)
-		{
-			staff.Add(t);
-		}
-	}
 }
